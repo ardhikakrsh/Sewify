@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pakeaja/view/login_page.dart';
 import 'package:pakeaja/view/register_page.dart';
 
-class Welcome extends StatelessWidget {
-  const Welcome({super.key});
+class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

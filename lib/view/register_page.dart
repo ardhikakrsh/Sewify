@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pakeaja/components/my_hero.dart';
+import 'package:pakeaja/helper/diplay_message.dart';
+import 'package:pakeaja/service/auth/auth_service.dart';
 import 'package:pakeaja/view/login_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -10,11 +12,10 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
 
@@ -24,6 +25,11 @@ class _RegisterPageState extends State<RegisterPage> {
     passwordController.dispose();
     confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -91,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     // Confirm Password
                     TextField(
                       controller: confirmPasswordController,
-                      obscureText: !isPasswordVisible,
+                      obscureText: !isConfirmPasswordVisible,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock),
                         labelText: 'Confirm Password',
@@ -116,12 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     // Register Button
                     FilledButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
-                          ),
-                        );
+                        onRegisterPressed();
                       },
                       style: FilledButton.styleFrom(
                         backgroundColor: Colors.blueAccent,
@@ -172,5 +173,45 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
+  }
+
+  void onRegisterPressed() async {
+    final authService = AuthService();
+
+    // empty all text field
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmPasswordController.text.isEmpty) {
+      displayMessage('Please fill all fields', context);
+      return;
+    }
+
+    // pass and confirm pass not match
+    if (passwordController.text != confirmPasswordController.text) {
+      displayMessage('Password and Confirm Password not match', context);
+      return;
+    }
+
+    // pass and confirm pass match
+    if (passwordController.text == confirmPasswordController.text) {
+      try {
+        await authService.signUpWithEmailPassword(
+          nameController.text,
+          emailController.text,
+          passwordController.text,
+        );
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LoginPage(),
+          ),
+        );
+      } catch (e) {
+        displayMessage(e.toString(), context);
+        return;
+      }
+    }
   }
 }

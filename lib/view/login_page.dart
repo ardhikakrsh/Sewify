@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pakeaja/components/my_hero.dart';
+import 'package:pakeaja/helper/diplay_message.dart';
+import 'package:pakeaja/service/auth/auth_service.dart';
 import 'package:pakeaja/view/home_page.dart';
-import 'package:pakeaja/view/quote_list.dart';
 import 'package:pakeaja/view/register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,8 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   bool isPasswordVisible = false;
 
   @override
@@ -74,17 +75,21 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 10.0),
+                    GestureDetector(
+                      child: const Align(
+                        alignment: Alignment.centerRight,
+                        child: Text('Forgot password?',
+                            style: TextStyle(color: Colors.blueAccent)),
+                      ),
+                      onTap: () {},
+                    ),
                     const SizedBox(height: 20.0),
 
                     // Login Button
                     FilledButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Home(),
-                          ),
-                        );
+                        onLoginPressed();
                       },
                       style: FilledButton.styleFrom(
                         backgroundColor: Colors.blueAccent,
@@ -136,5 +141,29 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void onLoginPressed() async {
+    final authService = AuthService();
+
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      displayMessage('Email and password cannot be empty', context);
+      return;
+    }
+
+    try {
+      await authService.signInWithEmailAndPassword(
+        emailController.text,
+        passwordController.text,
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+    } catch (e) {
+      displayMessage(e.toString(), context);
+    }
   }
 }

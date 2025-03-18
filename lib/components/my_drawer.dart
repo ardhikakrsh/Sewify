@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:pakeaja/service/auth/welcome.dart';
+import 'package:pakeaja/service/auth/auth_service.dart';
+import 'package:pakeaja/service/auth/welcome_page.dart';
 import 'package:pakeaja/view/settings_page.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
+
+  void signOut() {
+    final authService = AuthService();
+    authService.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +49,15 @@ class MyDrawer extends StatelessWidget {
               iconColor: Colors.red,
               title: const Text('Logout'),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Welcome()));
+                signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const WelcomePage();
+                    },
+                  ),
+                );
               },
             ),
           ],
