@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pakeaja/view/login_page.dart';
-import 'package:pakeaja/view/register_page.dart';
+import 'package:pakeaja/view/pages/login_page.dart';
+import 'package:pakeaja/view/pages/register_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
