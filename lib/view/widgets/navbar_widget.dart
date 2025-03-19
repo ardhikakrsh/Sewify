@@ -17,6 +17,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
       builder: (context, selectedPage, child) {
         return CurvedNavigationBar(
           backgroundColor: Colors.transparent,
+          animationDuration: const Duration(milliseconds: 400),
           color: Colors.blueAccent,
           height: 75,
           items: const [

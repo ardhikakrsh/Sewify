@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pakeaja/view/pages/login_page.dart';
 import 'package:pakeaja/view/pages/register_page.dart';
 
@@ -51,8 +52,11 @@ class WelcomePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            childBuilder: (context) {
+                              return const LoginPage();
+                            },
                           ),
                         );
                       },

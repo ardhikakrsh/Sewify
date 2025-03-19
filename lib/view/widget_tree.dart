@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pakeaja/components/my_drawer.dart';
 import 'package:pakeaja/data/notifiers.dart';
 import 'package:pakeaja/view/pages/cart_page.dart';
@@ -28,8 +29,9 @@ class WidgetTree extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const CartPage(),
+                PageTransition(
+                  type: PageTransitionType.rightToLeftWithFade,
+                  child: const CartPage(),
                 ),
               );
             },
