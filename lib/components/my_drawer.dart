@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pakeaja/service/auth/auth_service.dart';
 import 'package:pakeaja/service/auth/welcome_page.dart';
 import 'package:pakeaja/view/pages/cart_page.dart';
 import 'package:pakeaja/view/pages/history_page.dart';
-import 'package:pakeaja/view/pages/profile_page.dart';
 import 'package:pakeaja/view/pages/settings_page.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -33,22 +33,6 @@ class MyDrawer extends StatelessWidget {
               accountEmail: Text('PakeAja@gmail.com'),
             ),
 
-            // profile
-            ListTile(
-              leading: const Icon(Icons.person, color: Colors.blue),
-              title: const Text('Profile'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const ProfilePage();
-                    },
-                  ),
-                );
-              },
-            ),
-
             // My Cart
             ListTile(
               leading: const Icon(Icons.shopping_cart, color: Colors.green),
@@ -56,10 +40,9 @@ class MyDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const CartPage();
-                    },
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    child: const CartPage(),
                   ),
                 );
               },
@@ -72,10 +55,9 @@ class MyDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const HistoryPage();
-                    },
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    child: const HistoryPage(),
                   ),
                 );
               },
@@ -87,9 +69,12 @@ class MyDrawer extends StatelessWidget {
               title: const Text('Settings'),
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingsPage()));
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    child: const SettingsPage(),
+                  ),
+                );
               },
             ),
 
@@ -103,10 +88,10 @@ class MyDrawer extends StatelessWidget {
                 signOut();
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const WelcomePage();
-                    },
+                  PageTransition(
+                    type: PageTransitionType.topToBottomJoined,
+                    childCurrent: const Drawer(),
+                    child: const WelcomePage(),
                   ),
                 );
               },
