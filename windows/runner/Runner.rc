@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "pakeaja" "\0"
+            VALUE "FileDescription", "sewify" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "pakeaja" "\0"
+            VALUE "InternalName", "sewify" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "pakeaja.exe" "\0"
-            VALUE "ProductName", "pakeaja" "\0"
+            VALUE "OriginalFilename", "sewify.exe" "\0"
+            VALUE "ProductName", "sewify" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

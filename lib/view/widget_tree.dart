@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:pakeaja/components/my_drawer.dart';
-import 'package:pakeaja/data/notifiers.dart';
-import 'package:pakeaja/view/pages/cart_page.dart';
-import 'package:pakeaja/view/pages/collection_page.dart';
-import 'package:pakeaja/view/pages/home_page.dart';
-import 'package:pakeaja/view/pages/profile_page.dart';
-import 'package:pakeaja/view/widgets/navbar_widget.dart';
+import 'package:sewify/components/my_drawer.dart';
+import 'package:sewify/data/notifiers.dart';
+import 'package:sewify/view/pages/cart_page.dart';
+import 'package:sewify/view/pages/collection_page.dart';
+import 'package:sewify/view/pages/home_page.dart';
+import 'package:sewify/view/pages/profile_page.dart';
+import 'package:sewify/view/widgets/navbar_widget.dart';
 
 List<Widget> pages = [
   const HomePage(),
@@ -21,7 +21,7 @@ class WidgetTree extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PakeAja'),
+        title: const Text('Sewify'),
         centerTitle: true,
         actions: [
           IconButton(

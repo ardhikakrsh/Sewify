@@ -1,4 +1,4 @@
-package com.example.pakeaja
+package com.example.sewify
 
 import io.flutter.embedding.android.FlutterActivity
 

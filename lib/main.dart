@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:pakeaja/firebase_options.dart';
-import 'package:pakeaja/service/auth/auth_gate.dart';
+import 'package:sewify/firebase_options.dart';
+import 'package:sewify/service/auth/auth_gate.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

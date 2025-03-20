@@ -1,6 +1,6 @@
 {
-  "name": "pakeaja",
-  "short_name": "pakeaja",
+  "name": "sewify",
+  "short_name": "sewify",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

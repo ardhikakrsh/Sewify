@@ -1,6 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:pakeaja/data/notifiers.dart';
+import 'package:sewify/data/notifiers.dart';
 
 class NavbarWidget extends StatefulWidget {
   const NavbarWidget({super.key});

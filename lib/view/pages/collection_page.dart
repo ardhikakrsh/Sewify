@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pakeaja/components/my_list.dart';
-import 'package:pakeaja/service/database/firestore.dart';
+import 'package:sewify/components/my_list.dart';
+import 'package:sewify/service/database/firestore.dart';
 
 class CollectionPage extends StatefulWidget {
   const CollectionPage({super.key});
@@ -35,7 +35,7 @@ class _CollectionPageState extends State<CollectionPage> {
         stream: firestoreService.getGoodsStream(),
         builder: (context, snapshot) {
           // if we have data, get all the docs
-          if (snapshot.hasData) {
+          if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
             List goodsList = snapshot.data!.docs;
 
             return ListView.builder(
@@ -64,7 +64,13 @@ class _CollectionPageState extends State<CollectionPage> {
               },
             );
           } else {
-            return const Text('Add some goods..');
+            return const Center(
+              child: Text(
+                'Add some goods to your collection!\nClick the add button below',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
+            );
           }
         },
       ),
@@ -78,51 +84,59 @@ class _CollectionPageState extends State<CollectionPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        title: const Text('Add Goods',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(
-                labelText: 'Name',
-                prefixIcon: const Icon(Icons.text_fields),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+        title: const Text(
+          'Add Goods',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        content: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    labelText: 'Name',
+                    prefixIcon: const Icon(Icons.shopping_bag),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: priceController,
-              decoration: InputDecoration(
-                labelText: 'Price',
-                prefixIcon: const Icon(Icons.attach_money),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: priceController,
+                  decoration: InputDecoration(
+                    labelText: 'Price',
+                    prefixIcon: const Icon(Icons.attach_money),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: descriptionController,
-              decoration: InputDecoration(
-                labelText: 'Goods Description',
-                prefixIcon: const Icon(Icons.description),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: descriptionController,
+                  decoration: InputDecoration(
+                    labelText: 'Description',
+                    prefixIcon: const Icon(Icons.description),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
         actions: [
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.redAccent,
               foregroundColor: Colors.white,
+              fixedSize: const Size(95, 40),
             ),
             onPressed: () {
               Navigator.pop(context);
@@ -133,18 +147,25 @@ class _CollectionPageState extends State<CollectionPage> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blueAccent,
               foregroundColor: Colors.white,
+              fixedSize: const Size(95, 40),
             ),
             onPressed: () {
-              firestoreService.addGoods(
-                nameController.text,
-                priceController.text,
-                descriptionController.text,
-              );
-
-              nameController.clear();
-              priceController.clear();
-              descriptionController.clear();
-              Navigator.pop(context);
+              if (nameController.text.isEmpty ||
+                  priceController.text.isEmpty ||
+                  descriptionController.text.isEmpty) {
+                Navigator.pop(context);
+                return;
+              } else {
+                firestoreService.addGoods(
+                  nameController.text,
+                  priceController.text,
+                  descriptionController.text,
+                );
+                nameController.clear();
+                priceController.clear();
+                descriptionController.clear();
+                Navigator.pop(context);
+              }
             },
             child: const Text('Add'),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:pakeaja/view/pages/login_page.dart';
-import 'package:pakeaja/view/pages/register_page.dart';
+import 'package:sewify/view/pages/login_page.dart';
+import 'package:sewify/view/pages/register_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -21,7 +21,7 @@ class WelcomePage extends StatelessWidget {
                   children: [
                     const Center(
                       child: Text(
-                        'Welcome to PakeAja',
+                        'Welcome to Sewify!',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,

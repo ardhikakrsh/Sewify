@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:pakeaja/service/auth/auth_service.dart';
-import 'package:pakeaja/service/auth/welcome_page.dart';
-import 'package:pakeaja/view/pages/cart_page.dart';
-import 'package:pakeaja/view/pages/history_page.dart';
-import 'package:pakeaja/view/pages/settings_page.dart';
+import 'package:sewify/service/auth/auth_service.dart';
+import 'package:sewify/service/auth/welcome_page.dart';
+import 'package:sewify/view/pages/cart_page.dart';
+import 'package:sewify/view/pages/history_page.dart';
+import 'package:sewify/view/pages/settings_page.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -30,7 +30,7 @@ class MyDrawer extends StatelessWidget {
                 'Mikhael Abi Saputra',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              accountEmail: Text('PakeAja@gmail.com'),
+              accountEmail: Text('sewify@gmail.com'),
             ),
 
             // My Cart
@@ -104,7 +104,7 @@ class MyDrawer extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(20),
                   child: Text(
-                    '© 2025 PakeAja. By Ardhika.',
+                    '© 2025 sewify. By Ardhika.',
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),

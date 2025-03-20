@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pakeaja/components/my_hero.dart';
-import 'package:pakeaja/helper/diplay_message.dart';
-import 'package:pakeaja/service/auth/auth_service.dart';
-import 'package:pakeaja/view/pages/register_page.dart';
-import 'package:pakeaja/view/widget_tree.dart';
+import 'package:sewify/components/my_hero.dart';
+import 'package:sewify/helper/diplay_message.dart';
+import 'package:sewify/service/auth/auth_service.dart';
+import 'package:sewify/view/pages/register_page.dart';
+import 'package:sewify/view/widget_tree.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
             const Padding(
               padding: EdgeInsets.all(20),
               child: Text(
-                '© 2025 PakeAja. All rights reserved.',
+                '© 2025 sewify. All rights reserved.',
                 style: TextStyle(color: Colors.grey),
               ),
             )

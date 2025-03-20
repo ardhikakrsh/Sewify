@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:pakeaja/service/database/firestore.dart';
+import 'package:sewify/service/database/firestore.dart';
 
 class MyList extends StatefulWidget {
   final String name;
@@ -43,7 +43,7 @@ class _MyListState extends State<MyList> {
                 onPressed: (context) => editGoods(),
                 icon: Icons.edit,
                 label: 'Edit',
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.green,
               ),
 
               // view button
@@ -51,7 +51,7 @@ class _MyListState extends State<MyList> {
                 onPressed: (context) => viewGoods(),
                 icon: Icons.visibility,
                 label: 'View',
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.blue,
               ),
             ],
           ),
@@ -72,9 +72,10 @@ class _MyListState extends State<MyList> {
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             // display the name
-            title: Text(widget.name,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            title: Text(
+              widget.name,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
             // display the price
             subtitle: Text('Price: ${widget.price}',
                 style: const TextStyle(fontSize: 14)),
@@ -92,13 +93,14 @@ class _MyListState extends State<MyList> {
         content: Text(widget.description),
         actions: [
           ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent,
-                foregroundColor: Colors.white,
-              ),
-              onPressed: () => Navigator.pop(context),
-              label: const Text('Close'),
-              icon: const Icon(Icons.close)),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.redAccent,
+              foregroundColor: Colors.white,
+            ),
+            onPressed: () => Navigator.pop(context),
+            label: const Text('Close'),
+            icon: const Icon(Icons.close),
+          ),
         ],
       ),
     );
