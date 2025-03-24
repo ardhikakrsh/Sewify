@@ -22,7 +22,7 @@ class MyDrawer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: Colors.blueAccent),
+              decoration: BoxDecoration(color: Colors.black87),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/img/slide3.jpg'),
               ),
@@ -35,7 +35,8 @@ class MyDrawer extends StatelessWidget {
 
             // My Cart
             ListTile(
-              leading: const Icon(Icons.shopping_cart, color: Colors.green),
+              leading:
+                  const Icon(Icons.shopping_cart, color: Colors.blueAccent),
               title: const Text('My Cart'),
               onTap: () {
                 Navigator.push(

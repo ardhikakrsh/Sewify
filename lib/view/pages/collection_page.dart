@@ -29,41 +29,19 @@ class _CollectionPageState extends State<CollectionPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: openNoteBox,
-        child: const Icon(Icons.add),
+        backgroundColor: Colors.blueAccent,
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: firestoreService.getGoodsStream(),
         builder: (context, snapshot) {
-          // if we have data, get all the docs
-          if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
-            List goodsList = snapshot.data!.docs;
+          // if the connection is in waiting state
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SizedBox();
+          }
 
-            return ListView.builder(
-              itemCount: goodsList.length,
-              itemBuilder: (context, index) {
-                // get each individual doc
-                DocumentSnapshot document = goodsList[index];
-                String docID = document.id;
-
-                // get the goods from each doc
-                Map<String, dynamic> data =
-                    document.data() as Map<String, dynamic>;
-                String name = data['name'];
-                String price = data['price'];
-                String description = data['description'];
-
-                // display as a list tile
-                return SingleChildScrollView(
-                  child: MyList(
-                    name: name,
-                    price: price,
-                    description: description,
-                    docID: docID,
-                  ),
-                );
-              },
-            );
-          } else {
+          // if there is no data
+          if (!snapshot.hasData && snapshot.data!.docs.isEmpty) {
             return const Center(
               child: Text(
                 'Add some goods to your collection!\nClick the add button below',
@@ -72,6 +50,35 @@ class _CollectionPageState extends State<CollectionPage> {
               ),
             );
           }
+
+          // if there is data
+          List goodsList = snapshot.data!.docs;
+
+          return ListView.builder(
+            itemCount: goodsList.length,
+            itemBuilder: (context, index) {
+              // get each individual doc
+              DocumentSnapshot document = goodsList[index];
+              String docID = document.id;
+
+              // get the goods from each doc
+              Map<String, dynamic> data =
+                  document.data() as Map<String, dynamic>;
+              String name = data['name'];
+              String price = data['price'];
+              String description = data['description'];
+
+              // display as a list tile
+              return SingleChildScrollView(
+                child: MyList(
+                  name: name,
+                  price: price,
+                  description: description,
+                  docID: docID,
+                ),
+              );
+            },
+          );
         },
       ),
     );
@@ -99,7 +106,7 @@ class _CollectionPageState extends State<CollectionPage> {
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: 'Name',
-                    prefixIcon: const Icon(Icons.shopping_bag),
+                    prefixIcon: const Icon(Icons.price_change),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
