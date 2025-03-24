@@ -106,7 +106,7 @@ class _CollectionPageState extends State<CollectionPage> {
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: 'Name',
-                    prefixIcon: const Icon(Icons.price_change),
+                    prefixIcon: const Icon(Icons.text_fields),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -117,7 +117,7 @@ class _CollectionPageState extends State<CollectionPage> {
                   controller: priceController,
                   decoration: InputDecoration(
                     labelText: 'Price',
-                    prefixIcon: const Icon(Icons.attach_money),
+                    prefixIcon: const Icon(Icons.price_change),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -157,12 +157,25 @@ class _CollectionPageState extends State<CollectionPage> {
               fixedSize: const Size(95, 40),
             ),
             onPressed: () {
+              // jika kosong semua
               if (nameController.text.isEmpty ||
                   priceController.text.isEmpty ||
                   descriptionController.text.isEmpty) {
                 Navigator.pop(context);
                 return;
-              } else {
+              }
+              // jika price bukan angka
+              else if (double.tryParse(priceController.text) == null) {
+                // show snackbar
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Price must be a number'),
+                  ),
+                );
+                return;
+              }
+              // tambahkan goods
+              else {
                 firestoreService.addGoods(
                   nameController.text,
                   priceController.text,
