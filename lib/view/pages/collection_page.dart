@@ -41,7 +41,7 @@ class _CollectionPageState extends State<CollectionPage> {
           }
 
           // if there is no data
-          if (!snapshot.hasData && snapshot.data!.docs.isEmpty) {
+          if (snapshot.data!.docs.isEmpty) {
             return const Center(
               child: Text(
                 'Add some goods to your collection!\nClick the add button below',
