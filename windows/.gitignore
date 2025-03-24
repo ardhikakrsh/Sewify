@@ -16,6 +16,3 @@ x86/
 # but keep track of directories ending in .cache
 !*.[Cc]ache/
 
-lib/firebase_options.dart
-android/app/google-services.json
-ios/Runner/GoogleService-Info.plist
