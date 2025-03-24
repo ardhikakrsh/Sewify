@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sewify/service/database/firestore.dart';
+import 'package:intl/intl.dart';
 
 class MyList extends StatefulWidget {
   final String name;
@@ -77,8 +78,16 @@ class _MyListState extends State<MyList> {
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             // display the price
-            subtitle: Text('Price: ${widget.price}',
-                style: const TextStyle(fontSize: 14)),
+            subtitle: Text(
+              NumberFormat.currency(
+                locale: 'id',
+                symbol: 'Rp',
+                decimalDigits: 0,
+              ).format(
+                int.parse(widget.price),
+              ),
+              style: const TextStyle(fontSize: 16, color: Colors.green),
+            ),
           ),
         ),
       ),
@@ -145,7 +154,7 @@ class _MyListState extends State<MyList> {
                 controller: priceController,
                 decoration: InputDecoration(
                   labelText: 'Price',
-                  prefixIcon: const Icon(Icons.attach_money),
+                  prefixIcon: const Icon(Icons.price_change),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
