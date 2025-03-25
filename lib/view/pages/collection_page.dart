@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sewify/components/my_list.dart';
 import 'package:sewify/service/database/firestore.dart';
 
@@ -42,13 +43,7 @@ class _CollectionPageState extends State<CollectionPage> {
 
           // if there is no data
           if (snapshot.data!.docs.isEmpty) {
-            return const Center(
-              child: Text(
-                'Add some goods to your collection!\nClick the add button below',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
-              ),
-            );
+            return Center(child: Lottie.asset('assets/lotties/empty1.json'));
           }
 
           // if there is data
