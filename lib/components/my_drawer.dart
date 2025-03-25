@@ -21,16 +21,16 @@ class MyDrawer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: Colors.black87),
-              currentAccountPicture: CircleAvatar(
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue[800]),
+              currentAccountPicture: const CircleAvatar(
                 backgroundImage: AssetImage('assets/img/slide3.jpg'),
               ),
-              accountName: Text(
-                'Mikhael Abi Saputra',
+              accountName: const Text(
+                'Ardhika Krishna',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              accountEmail: Text('sewify@gmail.com'),
+              accountEmail: const Text('itsyourboydhk@gmail.com'),
             ),
 
             // My Cart
@@ -51,7 +51,7 @@ class MyDrawer extends StatelessWidget {
 
             // My Orders
             ListTile(
-              leading: const Icon(Icons.history, color: Colors.orange),
+              leading: const Icon(Icons.history, color: Colors.green),
               title: const Text('History'),
               onTap: () {
                 Navigator.push(
